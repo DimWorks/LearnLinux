@@ -1,27 +1,41 @@
 #!/bin/bash
 
-read -p "Введите путь к основной папке: " BaseDirectory 
-read -p "Введите префикс для имени папок: " FolderPrefix
-read -p "Введите количество папок: " FolderNumber 
-read -p "Введите количество подпапок в каждой папке: " SubfolderNumber
-read -p "Введите количество файлов в каждой подпаnке: " FileNumber
+read -p "Enter  the path to the main folder: " MainFolder
+read -p "Enter the base name of folder: " BaseName
+read -p "Enter the number of folder: " NumFolder
+read -p "Enter the number of subfolder: " NumSubfolder
+read -p "Enter the number of file: " NumFile
 
-for ((i=1; i<=FolderNumber; i++)) do
-FolderName="S{FolderPrefix) $i" FolderPath="$BaseDirectory/$FolderName"
+mkdir "$MainFolder/$BaseName"
 
-mkdir -p "$FolderPath"
+cd "$MainFolder/$BaseName"
 
-for ((j=1; j<=SubfolderNumber; j++)) do
-SubfolderName="subfolder$j" SubfolderPath="$FolderPath/$Subfolder Name"
-
-mkdir -p "$SubfolderPath"
-
-for ((k=l; k<=FileNumber; k++))
+for ((i=1; i<=NumFolder; i++)) 
 do
-FileName="filesk.txt"
-FilePath="$SubfolderPath/$FileName"
-#Создание пустого файла
-touch "$FilePath"
+
+#$Folder = "$BaseName$i"
+
+mkdir $i
+
+cd $i
+
+for ((j=1; j<=NumSubfolder; j++)) 
+do
+SubfolderName="subfolder$j"
+
+mkdir "$SubfolderName"
+
+cd $SubfolderName
+
+for ((k=1; k<=NumFile; k++))
+do
+
+FileName="file$k.txt"
+#FilePath="$SubfolderPath/$FileName"
+
+touch $FileName
 done
+cd ..
 done
+cd ..
 done
